@@ -22,6 +22,22 @@ bool isLetter(char c){
     
 }
 
+int* createArray(int n, bool asc){
+    int* v = new int(n);
+    if(asc){
+        for (int i = 0; i < n; i++)
+        {
+            v[i] = i+1;
+        }
+    }
+    else{
+        for(int i = 0, num = n; i < n; i++, num--){
+            v[i] = num;
+        }
+    }
+    return v;
+}
+
 bool checkName(string str){
     
     if(str[0] == ' ' || str[str.size()-1] == ' ') return false;
@@ -37,17 +53,29 @@ bool checkName(string str){
 
 int main(){
     
-    // string str = {"o rato roeu a roupa do rei de roma"};
-    // int tam = str.size();
+    string str = {"o rato roeu a roupa do rei de roma"};
+    int tam = str.size();
 
 
-    // int pos = stringFindFirst(str, 't');
-    // cout << pos << endl;
+    int pos = stringFindFirst(str, 't');
+    cout << pos << endl;
 
-    // bool check = isLetter('s');
-    // cout << check << endl;
+    bool check = isLetter('s');
+    cout << check << endl;
 
     bool check = checkName("eduardo tiyo");
     cout << check << endl;
+
+    int* vector = createArray(5, false);
+    
+    for (int i = 0; i < 5; i++)
+    {
+        cout << vector[i] << ' ';
+    }
+        printf("\n");
+    
+    
+    delete vector;
+
     return 0;
 }
