@@ -73,7 +73,7 @@ int* arrayConcat(int* v1, int n1, int* v2, int n2){
 int* arrayMerge(int* v1, int n1, int* v2, int n2){
     int* v3 = (int*)malloc(sizeof(int)*(n1+n2));
     int i = 0, j = 0, z = 0;
-    while(i < n1 || j < n2){
+    while(i < n1 && j < n2){
         if(v1[i] <= v2[j]){
             v3[z] = v1[i];
             i++, z++;
@@ -85,18 +85,17 @@ int* arrayMerge(int* v1, int n1, int* v2, int n2){
             continue;
         }
     }
-    if (i < n1){
-        while (i < n1){
-            v3[z] = v1[i];
-            z++, i++;
-        }
+    while (i < n1){
+        v3[z] = v1[i];
+        z++, i++;
     }
-    if (j < n2){
-        while(j < n2){
-            v3[z] = v2[j];
-            j++, z++;
-        }
+    
+    
+    while(j < n2){
+        v3[z] = v2[j];
+        j++, z++;
     }
+    
     return v3;
 }
 
