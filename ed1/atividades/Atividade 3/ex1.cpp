@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 using namespace std;
 
 int stringFindFirst(string s, char c){
@@ -119,19 +120,20 @@ int main(){
     // int v2[4] = {6,7,8,9};
     // int* vector = arrayConcat(v1, 5, v2, 4);
     
-    int v1[5] = {1,2,4,6,8};
-    int v2[4] = {3,5,9,20};
-    int* vector = arrayMerge(v1,5,v2,4);
-    for (int i = 0; i < 9; i++)
-    {
-        cout << vector[i] << ' ';
-    }
-        printf("\n");
-    
+    // int v1[5] = {1,2,4,6,8};
+    // int v2[4] = {3,5,9,20};
+    // int* vector = arrayMerge(v1,5,v2,4);
+    // for (int i = 0; i < 9; i++)
+    // {
+    //     cout << vector[i] << ' ';
+    // }
+    //     printf("\n");
     
     // delete vector;
-    free(vector);
-
+    // free(vector);
+    
+    bool res = isPalindrome(121);
+    cout << res << endl;
     
 
     return 0;
