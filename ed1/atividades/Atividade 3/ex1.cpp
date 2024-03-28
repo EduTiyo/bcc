@@ -1,3 +1,4 @@
+#include <vector>
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -102,36 +103,41 @@ int* arrayMerge(int* v1, int n1, int* v2, int n2){
 
 int main(){
     
-    string str = {"o rato roeu a roupa do rei de roma"};
-    int tam = str.size();
+    // string str = {"o rato roeu a roupa do rei de roma"};
+    // int tam = str.size();
 
 
-    int pos = stringFindFirst(str, 't');
-    cout << pos << endl;
+    // int pos = stringFindFirst(str, 't');
+    // cout << pos << endl;
 
-    bool check = isLetter('s');
-    cout << check << endl;
+    // bool check = isLetter('s');
+    // cout << check << endl;
 
-    bool check = checkName("eduardo tiyo");
-    cout << check << endl;
+    // bool check = checkName("eduardo tiyo");
+    // cout << check << endl;
 
-    int* vector = createArray(5, false);
-    int v1[5] = {1,2,3,4,5};
-    int v2[4] = {6,7,8,9};
-    int* vector = arrayConcat(v1, 5, v2, 4);
+    // int* vector = createArray(5, false);
+    // int v1[5] = {1,2,3,4,5};
+    // int v2[4] = {6,7,8,9};
+    // int* vector = arrayConcat(v1, 5, v2, 4);
     
-    int v1[5] = {1,2,4,6,8};
-    int v2[4] = {3,5,9,20};
-    int* vector = arrayMerge(v1,5,v2,4);
-    for (int i = 0; i < 9; i++)
-    {
-        cout << vector[i] << ' ';
+    // int v1[5] = {1,2,4,6,8};
+    // int v2[4] = {3,5,9,20};
+    // int* vector = arrayMerge(v1,5,v2,4);
+    // for (int i = 0; i < 9; i++)
+    // {
+    //     cout << vector[i] << ' ';
+    // }
+    //     printf("\n");
+    
+    vector<int> vec = {1,2,3};
+    vec.push_back(10);
+
+    for(int num : vec){
+        cout << num << " ";
     }
-        printf("\n");
-    
-    
     // delete vector;
-    free(vector);
+    // free(vector);
     
 
     return 0;
