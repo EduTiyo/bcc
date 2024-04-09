@@ -9,13 +9,12 @@ class Aluno{
         string ra;
         string nome;
     public:
-        Aluno(){
-            this->nome = "undefined";
-            this->ra = "0";
-        }
-        Aluno(string _ra, string _nome){
-            this->nome = _nome;
-            this->ra = _ra;
-        }
+        Aluno();
+        Aluno(string _ra, string _nome);
         ~Aluno();
+        void imprimirAluno();
+        void setRa(string _ra);
+        void setNome(string _nome);
+        string getRa();
+        string getNome();
 };
