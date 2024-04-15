@@ -5,5 +5,6 @@ Nesse código, podemos ver que o princípio de responsabilidade única é quebra
 ##
 
 Para corrigir o problema, criei outra classe console, a qual possui o método imprimirAluno(), assim, deixando uma responsabilidade para cada método. É vantajoso pois outras classes podem usufruir do mesmo método.
+Faz-se isso pois as interfaces devem ser pequenas, coesas e especificas para cada tipo de cliente
 
 ![code-snapshot1](https://github.com/EduTiyo/bcc/assets/128728277/59127022-4462-4d09-9eac-73f88e56703e)
