@@ -12,11 +12,7 @@ class Vetor{
         int v_size;
 
     public:
-        Vetor(){
-            this->capacity = 1;
-            this->v_size = 0;
-            this->array = new int(capacity);
-        }
+        Vetor();
         ~Vetor();
 
         // Insere o elemento e na última posição
@@ -60,12 +56,30 @@ class Vetor{
         void gerenciaCapacidade();        
 };
 
+Vetor::Vetor(){
+    capacity = 1;
+    array = new int(capacity);
+    v_size = 0;
+}
+Vetor::~Vetor(){}
+
 bool Vetor::push_back(int e){
     gerenciaCapacidade();
 
     array[v_size] = e;
     v_size++;
     return true;
+}
+void Vetor::print(){
+    if(v_size == 0){
+        cout << "[]";
+        return;
+    }
+    cout << "[";
+    for(int i = 0; i < v_size; i++){
+        cout << array[i] << ", ";
+    }
+    cout << "\b\b]" << endl;
 }
 
 bool Vetor::push_front(int e){
@@ -148,18 +162,20 @@ bool Vetor::replace(int pos, int e){
     return true;
 }
 
-void Vetor::print(){
-    if(v_size == 0){
-        cout << "[]" << endl;
-        return;
-    }
-    cout << "[";
-    for(int i = 0; i < v_size; i++){
-        cout << array[i] << ", ";
-    }
-    cout << "\b\b]"; 
-}
 void Vetor::gerenciaCapacidade(){
-    
-    
+    if(v_size == capacity){
+        int* newVet = new int(capacity*2);
+        for(int i = 0; i < v_size; i++){
+            newVet[i] = array[i];
+        }
+        capacity = capacity*2;
+        array = newVet;
+    }
+    else if(v_size < capacity*(0.25)){
+        int* newVet = new int(capacity*2);
+        for(int i = 0; i < v_size; i++){
+            newVet[i] = array[i];
+        }
+        capacity = capacity/2;
+    }
 }
