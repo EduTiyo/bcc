@@ -94,6 +94,7 @@ int Vetor::pop_back(){
     int popped = array[v_size-1];
     v_size--;
     gerenciaCapacidade();
+    return popped;
 }
 
 int Vetor::pop_front(){
@@ -144,6 +145,7 @@ int Vetor::size(){
 
 bool Vetor::replace(int pos, int e){
     array[pos] = e;
+    return true;
 }
 
 void Vetor::print(){
