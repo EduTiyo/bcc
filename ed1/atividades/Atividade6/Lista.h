@@ -109,12 +109,41 @@ bool ListaEncadeada::push_front(int e){
 
 bool ListaEncadeada::insert(int pos, int e){
     No* n = new No(e);
-    No* temp;
-    for (int i = 0; i < pos; i++)
+    No* temp = primeiro;
+    for (int i = 0; i < pos-1; i++)
     {
-        temp->prox = 
+        temp = temp->prox;
     }
-    
+    n->prox = temp->prox;
+    temp->prox = n;
+    tamanho++;
+    return true;
+}
+
+int ListaEncadeada::pop_back(){
+    if(tamanho==0){
+        throw out_of_range("lista vazia");
+    }
+    if (tamanho==1){
+        delete primeiro;
+        primeiro = ultimo = nullptr;
+        tamanho = 0;
+        return 0;
+    }
+    No* temp = primeiro;
+    for(int i = 0; i < tamanho-3; i++){
+        temp = temp->prox;
+    }
+    // delete ultimo;
+    ultimo = temp;
+    temp->prox = nullptr;
+    tamanho--;
+    return 0;    
+}
+
+int ListaEncadeada::pop_front(){
+    primeiro = primeiro->prox;
+    return 0;
 }
 
 void ListaEncadeada::print(){
