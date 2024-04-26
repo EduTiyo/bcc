@@ -19,14 +19,16 @@ class ListaEncadeada{
     private:
         No* ultimo;
         No* primeiro;
+        int tamanho;
 
     public:
         ListaEncadeada();
+        ~ListaEncadeada();
 
         // Insere o elemento e na última posição
-        bool push_back(No* n);
+        bool push_back(int e);
         // Insere o elemento e na primeira posição
-        bool push_front(No* n);
+        bool push_front(int e);
         // Insere o elemento e na posição pos
         bool insert(int pos, int e);
 
@@ -56,9 +58,7 @@ class ListaEncadeada{
         bool replace(int pos, int e);
 
         // Imprime todos os elementos no formato [1,2,3]
-        void print(No* n);
-        void setPrimeiro(No* n);
-        void setUltimo(No* n);
+        void print();
 
     private:
 	    // Dobrar a capacidade quando não houver mais espaço
@@ -66,43 +66,64 @@ class ListaEncadeada{
         void gerenciaCapacidade();        
 };
 
-ListaEncadeada::ListaEncadeada(){}
+ListaEncadeada::ListaEncadeada(){
+    this->primeiro = nullptr;
+    this->ultimo = nullptr;
+    this->tamanho = 0;
+}
+ListaEncadeada::~ListaEncadeada(){}
     
 No::No(){}
 
 No::No(int e){
-    this->dado = dado;
+    this->dado = e;
 }
 
 No::No(int e, No* prox){
-    this->dado = dado;
+    this->dado = e;
     this->prox = prox;
 }
 
-void ListaEncadeada::setPrimeiro(No* n){
-    primeiro = n;
-}
-
-void ListaEncadeada::setUltimo(No* n){
-    ultimo = n;
-}
-
-
-bool ListaEncadeada::push_back(No* n){
-    
-    ultimo->prox = n;
-    return true;
-}
-
-bool ListaEncadeada::push_front(No* n){
-    primeiro = n;
-    return true;
-}
-
-void ListaEncadeada::print(No* n){
-    if(n->prox == nullptr){
-        cout << n->dado << endl;
-        return;
+bool ListaEncadeada::push_back(int e){
+    No* n = new No(e, nullptr);
+    if(this->primeiro == nullptr){
+        primeiro = n;
     }
-    cout << n->dado << " ";
+    if(this->ultimo != nullptr){
+        ultimo->prox = n;
+    }
+    ultimo = n;
+    n->dado = e;
+    tamanho++;
+    
+    return true;
+}
+
+bool ListaEncadeada::push_front(int e){
+    No* n = new No(e);
+    n->prox = primeiro;
+    primeiro = n;
+    tamanho++;
+    return true;
+}
+
+bool ListaEncadeada::insert(int pos, int e){
+    No* n = new No(e);
+    No* temp;
+    for (int i = 0; i < pos; i++)
+    {
+        temp->prox = 
+    }
+    
+}
+
+void ListaEncadeada::print(){
+    No* temp = primeiro;
+    cout << "[";
+    while(temp != nullptr){
+        cout << temp->dado;
+        temp = temp->prox;
+        if(temp != nullptr) cout << ",";
+    }
+    cout << "]";
 }
