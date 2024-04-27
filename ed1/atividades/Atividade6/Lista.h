@@ -59,11 +59,6 @@ class ListaEncadeada{
 
         // Imprime todos os elementos no formato [1,2,3]
         void print();
-
-    private:
-	    // Dobrar a capacidade quando não houver mais espaço
-	    // Reduzir a capacidade pela metade quando for inferior a 25% de ocupação
-        void gerenciaCapacidade();        
 };
 
 ListaEncadeada::ListaEncadeada(){
@@ -134,7 +129,6 @@ int ListaEncadeada::pop_back(){
     for(int i = 0; i < tamanho-3; i++){
         temp = temp->prox;
     }
-    // delete ultimo;
     ultimo = temp;
     temp->prox = nullptr;
     tamanho--;
@@ -144,6 +138,71 @@ int ListaEncadeada::pop_back(){
 int ListaEncadeada::pop_front(){
     primeiro = primeiro->prox;
     return 0;
+}
+
+int ListaEncadeada::erase(int pos){
+    if(pos == 0){
+        primeiro = primeiro->prox;
+        tamanho--;
+        return 0;
+    }
+    
+    No* anterior = nullptr;
+    No* atual = primeiro;
+
+    for(int i = 0; i < pos; i++){
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    anterior->prox = atual->prox;
+
+    if (atual == ultimo){
+        ultimo = anterior;
+    }
+    delete atual;
+    tamanho--;
+
+    return 0;
+}
+
+int ListaEncadeada::front(){
+    return primeiro->dado;
+}
+
+int ListaEncadeada::back(){
+    return ultimo->dado;
+}
+
+int ListaEncadeada::at(int pos){
+    No* temp = primeiro;
+    for(int i = 0; i < pos; i++){
+        temp = temp->prox;
+    }
+    return temp->dado;
+}
+
+void ListaEncadeada::clear(){
+    primeiro = nullptr;
+    tamanho = 0;
+}
+
+bool ListaEncadeada::empty(){
+    if(tamanho == 0) return true;
+    return false;
+}
+
+int ListaEncadeada::size(){
+    return tamanho;
+}
+
+bool ListaEncadeada::replace(int pos, int e){
+    No* temp = primeiro;
+    for(int i = 0; i < pos; i++){
+        temp = temp->prox;
+    }
+    temp->dado = e;
+    return true;
 }
 
 void ListaEncadeada::print(){
