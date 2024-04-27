@@ -177,5 +177,6 @@ void Vetor::gerenciaCapacidade(){
             newVet[i] = array[i];
         }
         capacity = capacity/2;
+        // array = newVet;
     }
 }
