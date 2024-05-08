@@ -24,14 +24,12 @@ void printContigua(int* v, int tam){
 }
 
 void printEncadeada(No* n){
-    No* temp = n;
-    while(temp->prox != nullptr){
-        cout << "[";
-        cout << n->dado;
-        temp = n->prox;
-        if(temp->prox != nullptr) cout << ",";
+    if(n->prox == nullptr){
+        cout << n->dado << endl;
+        return;
     }
-    cout << temp->dado << "]";
+    cout << n->dado << ",";
+    printEncadeada(n->prox);
 }
 
 int main(){
