@@ -87,7 +87,7 @@ class Turma{
             if(this->qtde == this->tamVet){
                 return false;
             }
-            this->alunos[qtde] = aluno;
+            this->alunos[this->qtde] = aluno;
             qtde++;
             return true;
         }
