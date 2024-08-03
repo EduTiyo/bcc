@@ -67,12 +67,32 @@ class ListaDupla{
             return true;
         }
         // Insere o elemento e na posição pos
-        bool insert(int pos, int e);
+        bool insert(int pos, int e){
+            if(pos == 0) return push_front(e);
+            else if(pos == tamanho) return push_back(e);
+            else if(this->empty()) return push_back(e);
+            else{
+                No* novo = new No(e);
+                int idx = 0;
+                No* atual = primeiro;
+                while(idx < pos-1){ // 1,2 // 2,2
+                    atual = atual->prox;
+                    idx++;
+                }
+                novo->prox = atual->prox;
+                novo->ant = atual;
+                atual->prox->ant = novo;
+                atual->prox = novo;
+            }
+            tamanho++;
+            return true;
+            
+        }
 
         // Remove o último elemento
         int pop_back(){
             if (ultimo == nullptr) {
-                std::cout << "A lista está vazia." << std::endl;
+                cout << "a lista esta vazia." << endl;
                 return 0;
             }
 
@@ -88,20 +108,42 @@ class ListaDupla{
             return 0;
         }
         // Remove o primeiro elemento
-        int pop_front();
+        int pop_front(){
+            if(primeiro == nullptr){
+                cout << "a lista está vazia" << endl;
+                return 0;
+            }
+            if(primeiro->prox != nullptr){
+                primeiro->prox->ant = nullptr;
+                primeiro = primeiro->prox;
+            } else{
+                primeiro = ultimo = nullptr;
+            }
+            tamanho--;
+            return 0;
+        }
         // Remove o elemento da posição pos e retorna o elemento removido
         int erase(int pos);
 
 
         // Retorna o primeiro elemento
-        int front();
+        int front(){return primeiro->dado;}
         // Retorna o último elemento
-        int back();
+        int back(){return ultimo->dado;}
         // Retorna o elemento da posição pos
         int at(int pos);
 
         // Torna a lista vazia
-        void clear();
+        void clear(){
+            No* atual = primeiro;
+            while(atual != nullptr){
+                No* prox = atual->prox;
+                delete atual;
+                atual = prox;
+            }
+            primeiro = ultimo = atual;
+            tamanho = 0;
+        }
 
         // Verifica se o vetor está vazio
         bool empty(){
@@ -110,7 +152,7 @@ class ListaDupla{
             } else return false;
         }
         // Devolve a quantidade de elementos
-        int size();
+        int size(){return this->tamanho;}
         // Substitui o elemento da posição pos pelo elemento e
         bool replace(int pos, int e);
 
@@ -129,7 +171,5 @@ class ListaDupla{
             // cout << aux->dado;
             printf("]\n");
         }
-        int printTamanho(){
-            return this->tamanho;
-        }
+        
 };
