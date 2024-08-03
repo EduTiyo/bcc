@@ -1,0 +1,135 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class No{
+    public:
+        No* ant;
+        int dado;
+        No* prox;
+
+        No(){};
+        No(int dado){
+            this->dado=dado;
+        }
+        No(No* prox, int dado){
+            this->prox=prox;
+            this->dado=dado;
+        }
+        No(No* ant, int dado, No* prox){
+            this->ant=ant;
+            this->dado=dado;
+            this->prox=prox;
+        }
+        ~No(){};
+
+};
+
+class ListaDupla{
+    private:
+        int tamanho;
+        No* primeiro;
+        No* ultimo;
+    public:
+        ListaDupla(){
+            this->tamanho=0;
+            this->primeiro=nullptr;
+            this->ultimo=nullptr;
+        }
+        ~ListaDupla(){};
+
+         // Insere o elemento e na última posição
+        bool push_back(int e){
+            No* novo = new No(e);
+            if(this->empty()){
+                primeiro = ultimo = novo;
+            } else{
+                ultimo->prox = novo;
+                novo->ant = ultimo;
+                ultimo = novo;
+            }
+            tamanho++;
+            return true;
+        }
+        // Insere o elemento e na primeira posição
+        bool push_front(int e){
+            if(this->empty()){
+                return push_back(e);
+            }else{
+                No* novo = new No(e);
+                novo->prox = primeiro;
+                primeiro->ant = novo;
+                primeiro = novo;
+            }
+            tamanho++;
+            primeiro->ant = nullptr;
+            return true;
+        }
+        // Insere o elemento e na posição pos
+        bool insert(int pos, int e);
+
+        // Remove o último elemento
+        int pop_back(){
+            if (ultimo == nullptr) {
+                std::cout << "A lista está vazia." << std::endl;
+                return 0;
+            }
+
+            No* temp = ultimo;
+            if (ultimo->ant != nullptr) {
+                ultimo = ultimo->ant;
+                ultimo->prox = nullptr;
+            } else {
+                primeiro = ultimo = nullptr;
+            }
+            delete temp;
+            tamanho--;
+            return 0;
+        }
+        // Remove o primeiro elemento
+        int pop_front();
+        // Remove o elemento da posição pos e retorna o elemento removido
+        int erase(int pos);
+
+
+        // Retorna o primeiro elemento
+        int front();
+        // Retorna o último elemento
+        int back();
+        // Retorna o elemento da posição pos
+        int at(int pos);
+
+        // Torna a lista vazia
+        void clear();
+
+        // Verifica se o vetor está vazio
+        bool empty(){
+            if(this->ultimo == nullptr && this->primeiro == nullptr){
+                return true;
+            } else return false;
+        }
+        // Devolve a quantidade de elementos
+        int size();
+        // Substitui o elemento da posição pos pelo elemento e
+        bool replace(int pos, int e);
+
+        void print(){
+
+            printf("[");
+            No* aux = primeiro;
+            while(aux != nullptr){
+                if(aux->prox != nullptr){
+                    cout << aux->dado << ",";
+                }else{
+                    cout << aux->dado;
+                }
+                aux = aux->prox;
+            }
+            // cout << aux->dado;
+            printf("]\n");
+        }
+        int printTamanho(){
+            return this->tamanho;
+        }
+};
