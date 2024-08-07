@@ -123,7 +123,29 @@ class ListaDupla{
             return 0;
         }
         // Remove o elemento da posição pos e retorna o elemento removido
-        int erase(int pos);
+        int erase(int pos){
+            if(tamanho==1){
+                return this->pop_back();
+            }
+            else if(pos == tamanho-1){
+                return this->pop_back();
+            }
+            else if(pos == 0){
+                return this->pop_front();
+            } else {
+
+                No* temp = this->primeiro;
+                int i = 0;
+                for(i; i < pos; ++i){
+                    temp = temp->prox;
+                }
+                temp->ant->prox = temp->prox;
+                temp->prox->ant = temp->ant;
+                temp->dado;
+                tamanho--;
+                return temp->dado;
+            }
+        }
 
 
         // Retorna o primeiro elemento
@@ -135,14 +157,15 @@ class ListaDupla{
 
         // Torna a lista vazia
         void clear(){
-            No* atual = primeiro;
-            while(atual != nullptr){
-                No* prox = atual->prox;
-                delete atual;
-                atual = prox;
+            
+            while(this->empty()){
+                this->pop_back();
             }
-            primeiro = ultimo = atual;
+
+            primeiro = nullptr;
+            ultimo = nullptr;
             tamanho = 0;
+
         }
 
         // Verifica se o vetor está vazio
@@ -170,6 +193,10 @@ class ListaDupla{
             }
             // cout << aux->dado;
             printf("]\n");
+        }
+
+        ~ListaDupla(){
+            
         }
         
 };
