@@ -64,7 +64,27 @@ vector<int> list_concat(forward_list<int>& list1, forward_list<int>& list2){
     return vec;
 }
 
-
+bool isExpressionOk(string s){
+    vector<char> simboloAberto = {'(', '{', '['};
+    vector<char> simboloFechado = {')', '}', ']'};
+    stack<char> st = {};
+    
+    for(const auto& elem : s){
+        if(elem == '(' || elem == '{' || elem == '['){
+            st.push(elem);
+        }else if(elem == ')' || elem == '}' || elem == ']'){
+            if(st.empty()) return false;
+            char top = st.top();
+            st.pop();
+            if((elem == ')' && top != '(') || 
+               (elem == '{' && top != '}') ||
+               (elem == '[' && top != ']')){
+                return false;
+               }
+        }
+    }
+    return st.empty();
+}
 
 int main(){
 
@@ -75,10 +95,17 @@ int main(){
     // print(fl);
     // stack<int> st = vet_to_stack(5, v);
     // vector<int> vec = stack_to_vector(st);
-    forward_list<int> l1 = {1,2,44,14,8,7};
-    forward_list<int> l2 = {7,5,0,1,2};
-    vector<int> vec = list_concat(l1,l2);
-    print(vec);
+    // forward_list<int> l1 = {1,2,44,14,8,7};
+    // forward_list<int> l2 = {7,5,0,1,2};
+    // vector<int> vec = list_concat(l1,l2);
+    // print(vec);
+    string ex1 = "[(x + 8) * (9-2)]";
+    string ex2 = "[(x + 8) * (9-2)";
+    string ex3 = "[(x + 8) * (9-2])";
+
+    cout << (isExpressionOk(ex1) ? "certo" : "errado") << endl;
+    cout << (isExpressionOk(ex2) ? "certo" : "errado") << endl;
+    cout << (isExpressionOk(ex3) ? "certo" : "errado") << endl;
     
     return 0;
 }
