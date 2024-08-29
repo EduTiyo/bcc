@@ -68,6 +68,10 @@ class ListaDupla{
         }
         // Insere o elemento e na posição pos
         bool insert(int pos, int e){
+            if(pos < 0 || pos > tamanho-1) {
+                cout << "posicao invalida" << endl;
+                return false;
+            }
             if(pos == 0) return push_front(e);
             else if(pos == tamanho) return push_back(e);
             else if(this->empty()) return push_back(e);
@@ -195,8 +199,8 @@ class ListaDupla{
             printf("]\n");
         }
 
-        ~ListaDupla(){
+        // ~ListaDupla(){
             
-        }
+        // }
         
 };

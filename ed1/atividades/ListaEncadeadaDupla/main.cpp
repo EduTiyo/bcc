@@ -8,7 +8,8 @@ int main(){
     l1->push_back(1);
     l1->push_back(2);
     l1->push_back(3);
-    l1->clear();
+    // l1->insert(4, 10);
+    // l1->clear();
     // l1->pop_back(); pop_back funcionando
     // l1->pop_front(); pop_front funcionando
     // l1->clear(); clear funcionando
