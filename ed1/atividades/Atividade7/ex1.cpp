@@ -31,7 +31,7 @@ bool buscaBinariaIterativa(int elemento, int* v, int tam){
     return false;
 }
 
-bool buscaBinariaRecursivaAux(int elemento, int* v, int esquerda, int direita){
+    bool buscaBinariaRecursivaAux(int elemento, int* v, int esquerda, int direita){
     if(esquerda > direita) return false;
     int meio = esquerda + (direita-esquerda)/2;
     if(v[meio]==elemento) return true;
