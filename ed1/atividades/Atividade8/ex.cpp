@@ -106,6 +106,6 @@ int main(){
     cout << (isExpressionOk(ex1) ? "certo" : "errado") << endl;
     cout << (isExpressionOk(ex2) ? "certo" : "errado") << endl;
     cout << (isExpressionOk(ex3) ? "certo" : "errado") << endl;
-    
+    cout << "teste" << endl;    
     return 0;
 }
