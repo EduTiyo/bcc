@@ -1,0 +1,17 @@
+processamento de imagem tambem inclui detectar objetos em uma imagem.
+
+baixo nivel:
+	operacoes primitivas: reduzir ruido, aumentar contraste, realcar detalhes. entrada e saida sao imagens
+medio nivel:
+	segmentacao, descricao dos objetos para facilitar processamento e classificacao. entrada é imagem, mas saida sao atributos
+alto nivel:
+	adicionar sentidos aos objetos reconhecidos
+
+ruido: manchas brancas e pretas
+contraste: paleta de cor pouco abragente
+detecção de bordas
+segmentação
+compressao de imagem
+detecção de faces
+
+
