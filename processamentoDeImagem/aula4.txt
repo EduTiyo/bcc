@@ -1,0 +1,8 @@
+   histograma
+	p(rk)=nk/(M*N)
+	
+	rk = k-ésimo valor de intensidade
+	nk = numero de pixels de intensidade rk
+
+equalizacao de histogramas
+	transforma os niveis de cinza pra ter um maior intervalo dinamico. aumenta contraste
