@@ -1,0 +1,51 @@
+1.Todos os samurais seguem o código bushido.
+2.Alguns japoneses eram samurais.
+
+=> algunes japoneses seguiam o código bushido.
+
+D(x) = Todos os humanos.
+J(x) = x é japonês.
+S(x) = x é samurai.
+B(x) = x segue o código bushido.
+
+1.∀x(S(x) -> B(x))
+2.∃x(J(x) ^ S(x))
+
+3.J(y) ^ S(y)       (2) I.E
+4.S(y)              (3) Simplificação
+5.S(y) -> B(y)      (1) I.U
+6.B(y)              (4)(5) Silogismo hipotético
+7.∃x(S(x) ^ B(x))   (4)(6) G.E
+-------------------------------------------------
+1.Todos os jogadores líberos são especialistas em recepção e defesa.
+2.Pedro não é líbero
+
+D(x) = Todos os jogadores.
+L(x) = x é líbero.
+R(x) = x é especialista em recepção e defesa.
+
+1.∀x((D(x) ^ L(x)) -> R(x))
+2.¬L(Pedro)
+reta, mas há um pequeno erro na forma como você está tratando a segunda premissa e a conclusão. Vamos revisar a estrutura e os detalhes.
+
+### Premissas:
+
+1. **Premissa 1**: Todos os jogadores líberos são especialistas em recepção e defesa.
+   - Sua representação está correta:
+     \[
+     \f
+
+---
+
+### A Conclusão:
+
+Agora, a conclusão que você sugeriu é:
+\[
+\forall (\text{Pedro}) \neg R(\text{Pedro})
+\]
+Aqui, você está tentando afirmar que Pedro **não** é especialista em recepção e defesa, mas isso não é uma consequência direta da premissa maior.
+
+#### Análise:
+A premissa maior afirma que **se** um jogador é líbero, então ele é especialista em recepção e defesa. No entanto, a premissa menor diz apenas que **Pedro não é líbero**. Isso **não nos permite concluir** diretamente que Pedro **não é especialista** em recepção e defesa, já que a premissa maior só faz uma afirmação sobre **líberos**. Para jogadores que não são líberos, não há informação suficiente.
+
+Por exemplo, a negação de \( L(x) \) (Pedro não ser líbero) **não nos dá informações sobre \( R(x) \)** (se Pedro é especialista ou não). O fato de Pedro não ser líbero não implica que ele não seja especialista em recepção e defesa. Ele pode ser

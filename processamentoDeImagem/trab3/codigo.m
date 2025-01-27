@@ -1,10 +1,10 @@
 pkg load image;
 
-entrada = imread("very_low_contrast_gray_image.png");
+entrada = imread("imagem.jpg");
 figure(1);
 imshow(entrada);
-saida = zeros(576,1024,"uint8");
-tamanho = 576*1024;
+saida = zeros(679,800,"uint8");
+tamanho = 679*800;
 somaTotal = 0;
 prrk = zeros(1,256);
 sk = zeros(1,256);
@@ -20,8 +20,8 @@ for j = 1:256
   sk(j) = round(somaTotal);
 endfor;
 
-for k = 1:576
-  for l = 1:1024
+for k = 1:679
+  for l = 1:800
     saida(k,l) = sk(entrada(k,l)+1);
   endfor;
 endfor;
