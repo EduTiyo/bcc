@@ -1,0 +1,68 @@
+1. o espectro de fourier 1D é obtido da seguinte forma:
+	o A equacao é dada por F(u) = somatorio{x=0, M-1}. f(x) e^-(j.2.PI.ux)/M
+	o Após resolver usando os dados da sua funcao, calculamos a magnitude, para tirar
+	  os valores complexos e conseguir exibir em uma matriz. 
+		
+2. no centro do espectro. Sempre é o valor mais alto. Seu valor é proporcional com a média
+   de intensidades da imagem
+
+3. multiplicando (-1)^(x+y) na imagem original no dominio espacial
+
+4.
+
+5. as baixas frequencias no dominio da frequencia representam as transicoes mais suaves de
+   intensidade. Ja as altas, mudanças abruptas de intensidade
+
+6. é feito dobrando o tamanho de imagem e preenchendo o espaco com zeros. fazendo isso,
+   corrige-se o problema de wraparoud, que é um defeito nas bordas ocasionado pela proxi-
+   midade de periodos na convolucao. 2Mx2N. Filtro de mesmo tamanho (2Mx2N). o filtro deve
+   ser simetrico ao seu eixo, tal qual o espectro de fourier.
+
+7. 
+   1. Calcular o tamanho da imagem para aplicar o zero padding.
+   2. Aplicar o zero padding
+   3. Deslocar a imagem antes para centralizar a transformada
+   4. Aplicar a transformada
+   5. Multiplicar o filtro pela transformada
+   6. Fazer a transformada inversa, pegando apenas os numeros reais, e multiplicando por
+      (-1)^(x+y) de novo
+   7. obter tamanho original da imagem.
+
+8. um filtro passa-baixa permite a passagem apenas das baixas frequencias do espectro,
+   ou seja, causara uma suavizacao nas trnsicoes abruptas de intensidade. Um filtro 
+   passa-baixa é o Ideal, que possui uma distancia do componente dc e pra fora dessa 
+   distancia, as frequencias nao passam. Mas ocorre um fenomeno chamado ringing, ondula-
+   coes na imagem resultante.
+   
+      D(u,v) = [(u- P/2)² +(v - Q/2)²]^1/2
+      caso D(u,v) seja menor ou igual ao parametro passado, é 1. c.c. 0
+
+9. um filtro passa-alta permite a passagem das altas frequencias, i.e, causara um realce
+   nas mudancas abruptas de intensidade. um exemplo de filtro passa-alta é o butterworth,
+   que tem como caracteristica ser intermediario entre o ideal e gaussiano, alem disso, 
+   tem um parametro a mais que pode deixa-lo mais parecido com este ou aquele.
+   
+      D(u,v) = 1/(1+[D0/D(u,v)]^2n)
+      d0 é a frequencia de corte
+      n é o parametro a mais citado
+
+10. é interessante o uso de um filtro passa-baixa em uso cosmetico, suavizando rugas, ou 
+    facilitando o reconhecimento de caracteres.
+
+11. filtros seletivos como o rejeita-faixa, passa-faixa e notch.
+
+12. superior no sentido de que ele suaviza mt semelhantemente, mas nao borra as bordas 
+    igual ao da media aritmetica
+
+13. para ruidos do tipo sal, pimenta e sal e pimenta. filtro da mediana: dado um pixel e
+    sua vizinhanca, ordena-se as intensidades, e pega somente a intensidade do meio e apli-
+    ca-se ao pixel em questao.
+
+14. sao filtros seletivos usados no dominio da frequencia, usualmente usados para reduzir 
+    ruidos periodicos. sao obtidos pela translacao dos filtros passa/rejeita-faixa, sime-
+    tricos ao centro.
+
+15. processo aditivo é referente à cor das luzes, com cores primarias: vermelho, verde
+    e azul. pricesso de pigmentacao referente ao pigmento, com cores primarias ciano, ma-
+    genta e amarelo. RGB e CMY.
+
