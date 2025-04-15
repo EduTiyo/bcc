@@ -19,24 +19,24 @@ como seu filho. O processo pai deve aguardar o término da execução do comando
 
 int main(int argc, char *argv[]){
 
-  int status;                                            // status do filho para esperar terminar o processo
-  printf("DEPOIS DA EXECUÇÃO DO PROGRAMA DO FILHO\n\n"); // print para mostrar antes da execução do filho
-  pid_t pid = fork();                                    // criação do filho 
+  int status;                                                // status do filho para esperar terminar o processo
+  printf("DEPOIS DA EXECUÇÃO DO PROGRAMA DO FILHO\n");       // print para mostrar antes da execução do filho
+  pid_t pid = fork();                                        // criação do filho 
   
-  if(!pid) {                                             // se é o filho
+  if(!pid) {                                                 // se é o filho
     printf("COMANDO: ");
-    char *flags[argc];                                 // vetor de vetor com comando, argumentos e, posteriormente, NULL
-    for (int i = 1; i < argc; i++) {                   // laço de repetição para pegar os comandos e argumentos do terminal e colocar em flags
-      flags[i-1] = argv[i];                            // flag recebe o comando/argumento da iteração
-      printf("%s ", argv[i]);                       // print para mostrar o comando/argumento
+    char *flags[argc];                                       // vetor de vetor com comando, argumentos e, posteriormente, NULL
+    for (int i = 1; i < argc; i++) {                         // laço de repetição para pegar os comandos e argumentos do terminal e colocar em flags
+      flags[i-1] = argv[i];                                  // flag recebe o comando/argumento da iteração
+      printf("%s ", argv[i]);                                // print para mostrar o comando/argumento
     }
     printf("\n");
-    fflush(stdout);
-    flags[argc - 1] = NULL;                            // último elemento deve ser NULL para execvp
-    execvp(argv[1], flags);                            // filho executa o comando com os argumentos
+    fflush(stdout);                                          // flush para garantir que o print apareça antes do execvp
+    flags[argc - 1] = NULL;                                  // último elemento deve ser NULL para execvp
+    execvp(argv[1], flags);                                  // filho executa o comando com os argumentos
     exit(0);
     }
-    if(wait(&status)>=0){                                // pai espera o filho terminar o processo
+    if(wait(&status)>=0){                                    // pai espera o filho terminar o processo
       printf("\nDEPOIS DA EXECUÇÃO DO PROGRAMA DO FILHO\n"); // print para mostrar depois da execução do filho
     }
   
