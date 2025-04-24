@@ -1,0 +1,24 @@
+
+Médias Aritméticas das Linhas:
+Linha 0: 68.86
+Linha 1: 58.14
+Linha 2: 40.14
+Linha 3: 52.57
+Linha 4: 41.29
+Linha 5: 54.00
+Linha 6: 43.57
+Linha 7: 59.43
+Linha 8: 61.43
+Linha 9: 31.43
+
+Médias Aritméticas das Linhas:
+Linha 0: 68.86
+Linha 1: 58.14
+Linha 2: 40.14
+Linha 3: 52.57
+Linha 4: 41.29
+Linha 5: 54.00
+Linha 6: 43.57
+Linha 7: 59.43
+Linha 8: 61.43
+Linha 9: 31.43

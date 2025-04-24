@@ -1,3 +1,15 @@
+/*
+  Descrição: Faça um programa com N threads que localiza um valor em um vetor de inteiros. O espaço de busca no
+  vetor deve ser distribuído para as N threads.
+  Autores:  Eduardo Knabben Tiyo          RA:2551748
+            Pedro Chouery Grigolli        RA:2551845
+            Felipe Martins Sanches        RA:2390809
+            Ingrid Reupke Sbeguen Moran   RA:2349388 
+
+  Data de criação: 22/04/2025
+  Data da última atualização: 24/04/2025
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
