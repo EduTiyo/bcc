@@ -1,15 +1,19 @@
 /*
-  Descrição: Faça um programa com N threads que localiza um valor em um vetor de inteiros. O espaço de busca no
-  vetor deve ser distribuído para as N threads.
+  Descrição: Implemente um programa multithread com pthreads que calcule:
+  a) a média aritmética de cada linha de uma matriz MxN e devolva o resultado em um vetor de tamanho M.
+  b) a média geométrica de cada coluna de uma matriz MxN e devolva o resultado em um vetor de
+  tamanho N.
+  O programa deve gerar matrizes MxN com elementos aleatórios para arquivos; usar técnicas de
+  paralelização de funções e de dados; ler matrizes MxN de arquivos no formato em anexo; gravar os
+  resultados em um arquivo texto.
   Autores:  Eduardo Knabben Tiyo          RA:2551748
             Pedro Chouery Grigolli        RA:2551845
             Felipe Martins Sanches        RA:2390809
             Ingrid Reupke Sbeguen Moran   RA:2349388 
 
-  Data de criação: 22/04/2025
-  Data da última atualização: 24/04/2025
+  Data de criação: 20/04/2025
+  Data da última atualização: 22/04/2025
 */
-
 
 // Ao compilar, executar ./ex02 N_THREADS N_LINHAS N_COLUNAS
 
@@ -136,7 +140,7 @@ int main(int argc, char *argv[]) { //
     struct timespec start, end; // inicializa as variáveis para contagem de tempo
     clock_gettime(CLOCK_MONOTONIC, &start); // inicializa a contagem de tempo
 
-    if (argc != 2){
+    if (argc < 2){
         printf("Escreva no formato ./ex02 NUM_THREADS NUM_LINHAS NUM_COLUNAS\n", argv[0]);
     }
 
@@ -195,15 +199,10 @@ int main(int argc, char *argv[]) { //
         fprintf(f, "Linha %d: %.2f\n", i, resLinhas[i]);
     }
 
-    
-    fprintf(f, "\nMédias Aritméticas das Linhas:\n");
-    for (int i = 0; i < m.linhas; i++) {
-        fprintf(f, "Linha %d: %.2f\n", i, resLinhas[i]);
-    }
 
-    printf("\nMédias Geométricas das Colunas:\n");
+    fprintf(f, "\nMédias Geométricas das Colunas:\n");
     for (int j = 0; j < m.colunas; j++) {
-        printf("Coluna %d: %.2f\n", j, resColunas[j]);
+        fprintf(f, "Coluna %d: %.2f\n", j, resColunas[j]);
     }
     fclose(f);
 
@@ -231,7 +230,6 @@ int main(int argc, char *argv[]) { //
 
     return 0;
 }
-
 
 
 
