@@ -10,6 +10,8 @@
   Data da última atualização: 24/04/2025
 */
 
+// Ao compilar, executar ./ex01 N_VETOR N_THREADS ALVO
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
