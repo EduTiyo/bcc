@@ -68,7 +68,12 @@ parse (token:resto) =
 -- Recebe uma expressão e a variável em relação à qual se deve derivar
 -- Retorna a expressão derivada
 
---derivar :: Expressao -> String -> Expressao
+derivar :: Expressao -> String -> Expressao
+derivar (Const _) c = Const 0
+derivar (Var x) c = if x == c then Const 1 else Const 0
+derivar (Soma u v) c = Soma (derivar u c) (derivar v c)
+derivar (Produto u v) c = Soma (Produto (derivar u c) v) (Produto u (derivar v c))
+derivar (Potencia u n) c = Produto (Produto (Const n) (Potencia u (n - 1))) (derivar u c)
 
 --------------Simplificação--------------
 
@@ -94,5 +99,9 @@ imprimir (Potencia a n) = "(" ++ imprimir a ++ "^" ++ show n ++ ")"
 
 main :: IO ()
 main = do
-  let expr = Soma (Const 3) (Produto (Const 2) (Var "x"))
-  print (imprimir expr)
+    let prefixa = "(^ (+ x 1) 2)"
+    let parse_out  = parse (tokenize prefixa)
+    let expr = fst parse_out
+    let derivada = derivar expr "x"
+    putStrLn $ "Expressão original: " ++ imprimir expr
+    putStrLn $ "Derivada em relação a x: " ++ imprimir derivada
