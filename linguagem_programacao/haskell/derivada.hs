@@ -150,11 +150,33 @@ imprimir (Potencia a n) = "(" ++ imprimir a ++ "^" ++ show n ++ ")"
 
 main :: IO ()
 main = do
-    let prefixa = "(+ (* 3 (^ x 2)) (* 2 x))"
-    let parse_out  = parse (tokenize prefixa)
-    let expr = fst parse_out
-    let derivada = derivar expr "x"
-    let simplificada = simplificar derivada
-    putStrLn $ "Expressão original: " ++ imprimir expr
-    putStrLn $ "Derivada em relação a x: " ++ imprimir derivada
-    putStrLn $ "Derivada simplificada: " ++ imprimir simplificada
+    putStrLn "Digite uma expressão em notação pré-fixa: ('sair' para encerrar)"
+    loop
+
+loop :: IO ()
+loop = do
+    putStr "> "
+    input <- getLine
+    if input == "sair"
+        then putStrLn "Encerrando."
+        else do
+            processarExpressao input
+            putStrLn ""
+            loop
+
+processarExpressao :: String -> IO ()
+processarExpressao input = do
+    case parseExpressao input of
+        Left erro -> putStrLn $ "Erro ao analisar a expressão: " ++ erro
+        Right expr -> do
+            putStrLn $ "Expressão original: " ++ imprimir expr
+            let derivada = derivar expr "x"
+            putStrLn $ "Derivada: " ++ imprimir derivada
+            let simplificada = simplificar derivada
+            putStrLn $ "Derivada simplificada: " ++ imprimir simplificada
+
+parseExpressao :: String -> Either String Expressao
+parseExpressao input =
+    case parse (tokenize input) of
+        (expr, []) -> Right expr
+        (_, resto) -> Left $ "Tokens não processados: " ++ show resto
