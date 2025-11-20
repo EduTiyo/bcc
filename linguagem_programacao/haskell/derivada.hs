@@ -104,6 +104,8 @@ simplificar (Produto a (Const 0)) = Const 0
 simplificar (Produto (Const 1) b) = simplificar b
 simplificar (Produto a (Const 1)) = simplificar a
 simplificar (Produto (Const a) (Const b)) = Const (a * b)
+simplificar (Produto (Const a) (Produto (Const b) c)) = simplificar (Produto (Const (a * b)) c)
+simplificar (Produto (Produto (Const a) b) (Const c)) = simplificar (Produto (Const (a * c)) b)
 
 -- Potência
 simplificar (Potencia a 0) = Const 1
@@ -148,7 +150,7 @@ imprimir (Potencia a n) = "(" ++ imprimir a ++ "^" ++ show n ++ ")"
 
 main :: IO ()
 main = do
-    let prefixa = "(^ (+ x 1) 2)"
+    let prefixa = "(+ (* 3 (^ x 2)) (* 2 x))"
     let parse_out  = parse (tokenize prefixa)
     let expr = fst parse_out
     let derivada = derivar expr "x"
