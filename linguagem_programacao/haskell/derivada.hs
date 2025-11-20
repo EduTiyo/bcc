@@ -70,37 +70,51 @@ parse (token:resto) =
 
 derivar :: Expressao -> String -> Expressao
 
+-- Regras de derivação
+
+-- Constante
 derivar (Const _) c = Const 0
 
+-- Variável
 derivar (Var x) c = if x == c then Const 1 else Const 0
 
+-- Soma
 derivar (Soma u v) c = Soma (derivar u c) (derivar v c)
 
+-- Produto
 derivar (Produto u v) c = Soma (Produto (derivar u c) v) (Produto u (derivar v c))
 
+-- Potência
 derivar (Potencia u n) c = Produto (Produto (Const n) (Potencia u (n - 1))) (derivar u c)
 
 --------------Simplificação--------------
 
 simplificar :: Expressao -> Expressao
 
+-- Regras de simplificação básicas
+
+-- Soma
 simplificar (Soma (Const 0) b) = simplificar b
 simplificar (Soma a (Const 0)) = simplificar a
 simplificar (Soma (Const a) (Const b)) = Const (a + b)
 
+-- Produto
 simplificar (Produto (Const 0) b) = Const 0
 simplificar (Produto a (Const 0)) = Const 0
 simplificar (Produto (Const 1) b) = simplificar b
 simplificar (Produto a (Const 1)) = simplificar a
 simplificar (Produto (Const a) (Const b)) = Const (a * b)
 
+-- Potência
 simplificar (Potencia a 0) = Const 1
 simplificar (Potencia a 1) = simplificar a
 simplificar (Potencia (Const a) n) = Const (a ^ n)
 
+-- Distribuição
 simplificar (Produto a (Soma b c)) = simplificar (Soma (Produto a b) (Produto a c))
 simplificar (Produto (Soma b c) a) = simplificar (Soma (Produto b a) (Produto c a))
 
+-- Aplicar simplificações recursivamente
 simplificar (Potencia a n) = Potencia (simplificar a) n
 simplificar (Soma a b) = 
     let a' = simplificar a
