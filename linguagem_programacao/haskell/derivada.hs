@@ -69,16 +69,51 @@ parse (token:resto) =
 -- Retorna a expressão derivada
 
 derivar :: Expressao -> String -> Expressao
+
 derivar (Const _) c = Const 0
+
 derivar (Var x) c = if x == c then Const 1 else Const 0
+
 derivar (Soma u v) c = Soma (derivar u c) (derivar v c)
+
 derivar (Produto u v) c = Soma (Produto (derivar u c) v) (Produto u (derivar v c))
+
 derivar (Potencia u n) c = Produto (Produto (Const n) (Potencia u (n - 1))) (derivar u c)
 
 --------------Simplificação--------------
 
---simplificar :: Expressao -> Expressao
+simplificar :: Expressao -> Expressao
 
+simplificar (Soma (Const 0) b) = simplificar b
+simplificar (Soma a (Const 0)) = simplificar a
+simplificar (Soma (Const a) (Const b)) = Const (a + b)
+
+simplificar (Produto (Const 0) b) = Const 0
+simplificar (Produto a (Const 0)) = Const 0
+simplificar (Produto (Const 1) b) = simplificar b
+simplificar (Produto a (Const 1)) = simplificar a
+simplificar (Produto (Const a) (Const b)) = Const (a * b)
+
+simplificar (Potencia a 0) = Const 1
+simplificar (Potencia a 1) = simplificar a
+simplificar (Potencia (Const a) n) = Const (a ^ n)
+
+simplificar (Produto a (Soma b c)) = simplificar (Soma (Produto a b) (Produto a c))
+simplificar (Produto (Soma b c) a) = simplificar (Soma (Produto b a) (Produto c a))
+
+simplificar (Potencia a n) = Potencia (simplificar a) n
+simplificar (Soma a b) = 
+    let a' = simplificar a
+        b' = simplificar b
+        resultado = Soma a' b'
+    in if resultado == Soma a b then resultado else simplificar resultado
+simplificar (Produto a b) = 
+    let a' = simplificar a  
+        b' = simplificar b
+        resultado = Produto a' b'
+    in if resultado == Produto a b then resultado else simplificar resultado
+
+simplificar expr = expr
 
 -------------Imprimir Infixa----------------
 
@@ -103,5 +138,7 @@ main = do
     let parse_out  = parse (tokenize prefixa)
     let expr = fst parse_out
     let derivada = derivar expr "x"
+    let simplificada = simplificar derivada
     putStrLn $ "Expressão original: " ++ imprimir expr
     putStrLn $ "Derivada em relação a x: " ++ imprimir derivada
+    putStrLn $ "Derivada simplificada: " ++ imprimir simplificada
