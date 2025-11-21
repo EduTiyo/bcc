@@ -1,0 +1,10 @@
+transformacoes de intensidade e filtragem espacial
+
+funcoes basicas de transformacao de intensidade
+	linear (identidade ou negativa)
+	logaritmicas (log e inverse-log)
+	potencia (n-esima raiz ou n-esima potencia)
+
+expandir tons escuros (gama menor q 1)
+comprimir os tons claros (gama maior q 1)
+

@@ -1,0 +1,11 @@
+soma de imagem = utilizado em reduzir ruido -> media aritimetica 
+subtracao de imagem = utilizado em mostrar diferenca entre imagens
+multiplicacao e divisao = utilizado em correcao de sombreamento
+	evitar divisao por 0 -> adicionar pequeno valor ao pixel
+correcao do intervalo:
+ex:
+min: 30
+max: 25500
+
+pegar um pixel (1020)
+	(1020-30)/(25500-30)*255 = 10
